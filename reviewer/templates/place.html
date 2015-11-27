@@ -1,0 +1,88 @@
+<div class="bgPicBox">
+	<img id="bgPic" src="{{place.photoUrl}}" />
+
+</div>
+
+	<div class="mainContentBox">
+		<div id="sideBar">
+		<div class="midBox">
+			<div class="infoBox">
+				<div id="infoBoxTitle">
+					{{ place.name }}
+				</div>
+				<div id="infoBoxSubtitle">
+					<div>
+						{{place.address}}
+					</div>
+					<div>
+						{{place.city}}
+					</div>
+					<div>
+						{{place.phone}}
+					</div>
+				</div>
+				<div id="placeEditMenu">
+					<label class="collapse" for="_1" id="menuButton">
+						+
+					</label>
+					<input id="_1" type="checkbox">
+						<div id="placeEditMenuOpen">
+							<form name="updatePlaceForm">
+								<input type="text" ng-model="address" placeholder="address" required/><br>
+								<input type="text" ng-model="city" placeholder="city" required/><br>
+								<input type="text" ng-model="phone" placeholder="phone" required/>
+								<button ng-disabled="updatePlaceForm.$invalid" ng-click="updatePlace(address, city, phone)">Update</button>
+							</form>
+							<form name="addPhotoUrl">
+								<input type="text" ng-model="photoUrl" placeholder="photoUrl" required/>
+							<button ng-disabled="addPhotoUrl.$invalid" ng-click="updatePhotoUrl(photoUrl)">Update</button>
+						</div>
+				</div>
+			</div>
+			<div class="topDishes">
+				<div id="topDish">
+					Best dish: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[0].key})" > {{topDishArr[0].data.name}} </a>
+				</div>
+				<div id="alsoTryDishes">
+					Also popular: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[1].key})">{{topDishArr[1].data.name}}</a>, <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[2].key})">{{topDishArr[2].data.name}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="dataContentBox">
+			<div class="dishList">
+				<ul>
+					<li ng-repeat="dish in dishes | orderBy: '-avgScore' ">
+						<a ui-sref=".dish({placeId:place.$id, dishId:dish.$id})">
+							<div id="dishListName">
+								{{ dish.name }}
+							</div>
+						</a>
+						<div id="dishListScore">
+							{{dish.displayScore}}
+						</div>
+						<div id="dishListNumReviews">
+							({{dish.numReviews}})
+						</div>
+						<div id="dishListScorePct">
+							<div id="dishListScorePctFill" style="width:{{dish.avgScorePct}}%; background-color: {{dish.ratingColor}};">
+								<img id="dishListScorePctImg" src="img/empty5star-noborder256.png" />
+							</div>
+						</div>
+
+
+
+					</li>
+				</ul>
+				<div class="newDishBox">
+						<form name="newDishForm">
+							<input type="text" ng-model="newDishName" placeholder="Name of dish. . ." required/>
+							<button ng-disabled="newDishForm.$invalid" ng-click="createDish(newDishName)">Add dish</button>
+						</form>
+				</div>
+			</div>
+		</div>
+
+		<div ui-view class="reviewBox"></div>
+
+	</div>
+</div>
