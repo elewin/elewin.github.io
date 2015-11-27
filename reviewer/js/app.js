@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('placeList', {
 			url: '/placeList',
 			controller: 'placeListCtrl',
-			templateUrl: '/templates/placeList.html',
+			templateUrl: 'templates/placeList.html',
 			resolve: {
 				placeListRef: function(placeService) {
 					return placeService.getPlaces();
@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('place', {
 			url: '/placeList/:placeId',
 			controller: 'placeCtrl',
-			templateUrl: '/templates/place.html',
+			templateUrl: 'templates/place.html',
 			resolve: {
 				placeRef: function(placeService, $stateParams) {
 					return placeService.getPlace($stateParams.placeId);
@@ -39,7 +39,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('place.dish', {
 			url: '/placeList/:placeId/:dishId',
 			controller: 'dishCtrl',
-			templateUrl: '/templates/dish.html',
+			templateUrl: 'templates/dish.html',
 			resolve: {
 				placeRef: function(placeService, $stateParams) {
 					return placeService.getPlace($stateParams.placeId);
