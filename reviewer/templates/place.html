@@ -49,9 +49,12 @@
 			</div>
 		</div>
 		<div class="dataContentBox">
+			<div id="dishSearchBox">
+				<input ng-model="dishFilter" id="dishSearch" class="form-control" placeholder="Search Dishes. . .">
+			</div>
 			<div class="dishList">
 				<ul>
-					<li dir-paginate="dish in dishes | orderBy: '-avgScore' | itemsPerPage: 30" pagination-id="dishList">
+					<li dir-paginate="dish in dishes | orderBy: '-avgScore' | filter: dishFilter | itemsPerPage: 30" pagination-id="dishList">
 					<!-- <li ng-repeat="dish in dishes | orderBy: '-avgScore' "> -->
 						<a ui-sref=".dish({placeId:place.$id, dishId:dish.$id})">
 							<div id="dishListName">

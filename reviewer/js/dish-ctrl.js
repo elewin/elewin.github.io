@@ -31,7 +31,13 @@ angular.module('reviewer').controller('dishCtrl', function(placeListRef, placeRe
       comments: newComments,
 			summary: newSummary,
 			user: tempUser,			 ///////////// change this once users are implemented
-    });
+    }).then(function(ref) {
+  		var id = ref.key();
+			placeRef.update({
+				latestReviewId: id,
+				latestReviewTimeStamp: Date.now(),
+			});
+		});
 		tempUser.numReviews++; ///////////// change this once users are implemented
 
 		//reset fields:
@@ -59,6 +65,7 @@ angular.module('reviewer').controller('dishCtrl', function(placeListRef, placeRe
 		//update the place:
 		placeRef.update({
 			totalReviews: place.totalReviews+1,
+			dateOfLastReview: dateStr,
 		});
 
 		rootRef.update({

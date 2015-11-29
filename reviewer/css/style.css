@@ -242,6 +242,12 @@ a:visited {
 	box-shadow: 1px 0px 1px #B3B3B3;
 }
 
+#dishSearchBox{
+	position: absolute;
+    top: 65px;
+    left: 7px;
+}
+
 .dishList {
 	width: 326px;
 	position: absolute;
@@ -272,6 +278,25 @@ a:visited {
 	border: 1px solid #C8C8C8;
 	box-shadow: 1px 1px 0px #C1C1C1;
 	border-radius: 5px;
+}
+
+#sortByBox{
+display:inline-block;
+}
+
+#sortOptionsBox{
+
+}
+
+
+#placeSearchBox{
+	padding-bottom: 10px;
+    display: inline-block;
+
+}
+
+#placeSearchInput{
+    width: 645px;
 }
 
 #placeListName {
@@ -333,6 +358,7 @@ a:visited {
 	top: 92px;
 }
 
+
 #place {
 	border: 1px solid #6C6C6C;
 	border-radius: 5px;
@@ -357,6 +383,9 @@ a:visited {
 }
 
 /*dish view*/
+
+
+
 .dishPicBox {
 }
 
@@ -418,6 +447,13 @@ a:visited {
 	top: -8px;
 	font-size: 22px;
 	font-style: italic;
+}
+
+#reviewSearchBox{
+    position: absolute;
+    right: 1px;
+    top: 60px;
+    display:inline-block;
 }
 
 #reviewList {
@@ -629,8 +665,8 @@ a:visited {
 /* pagination controls */
 /*
 .paginationControls>div{
-	
-	
+
+
 	padding: 6px 12px;
 	line-height: 1.42857143;
 	text-decoration: none;
@@ -638,8 +674,8 @@ a:visited {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	margin-left: -3px;
-    display: inline-block;   
-    
+    display: inline-block;
+
 }
 */
 
@@ -651,7 +687,7 @@ a:visited {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	margin-left: -3px;
-    display: inline-block; 
+    display: inline-block;
 }
 
 #paginationControlsButton:hover{
@@ -663,14 +699,14 @@ a:visited {
 }
 
 #pageControlsBox{
-    
-    right: 5px;    
+
+    right: 5px;
     position:absolute;
 }
 
 #pageControlsDishListBox{
-    
-        
+
+
 
 }
 

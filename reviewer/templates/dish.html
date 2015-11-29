@@ -16,7 +16,12 @@
 	<div id="numReviews">
 		({{dish.numReviews}})
 	</div>
+	<div id="reviewSearchBox">
+		<input ng-model="q" id="search" class="form-control" placeholder="Search Reviews. . .">
+	</div>
 	<div id="reviewList">
+
+
 		<ul>
 			<li dir-paginate="review in reviews | orderObjectBy:id:true | filter: q | itemsPerPage: 5">
 			<!-- <li ng-repeat="review in reviews"> -->
@@ -53,7 +58,7 @@
 
 	<div id="pageControlsBox">
 		<dir-pagination-controls
-			
+
 	    max-size="5"
 	    direction-links="true"
 	    boundary-links="true"

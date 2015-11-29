@@ -23,16 +23,28 @@
                         "<span id="latestReviewSummary">{{latestReview.summary}}</span>" <span id="latestReviewUser"> - {{latestReview.user.name}}</span> <span id="latestReviewDate"> {{latestReview.date}}</span>
                     </div>
 			</div>
+
 		</div>
 		<div class="dataContentBox">
+
+
 
 		</div>
 
 				<div class="placeBox">
 
+					<div id="placeSearchBox">
+						<input ng-model="q" id="placeSearchInput" class="form-control" placeholder="Search. . .">
+					</div>
+
+					<div id="sortByBox">
+						<select id="sortOptionBox" ng-model="sortOption" ng-options="option.value as option.name for option in options" ng-init="sortOption = options[0].value">
+						</select>
+					</div>
+
 					<ul>
 						<!-- <li ng-repeat="place in placeList | orderBy: '+name'"> -->
-						<li dir-paginate="place in placeList | orderBy: '+name' | itemsPerPage: 7" >
+						<li dir-paginate="place in placeList | orderBy: sortOption | filter: q | itemsPerPage: 7" >
 
 						<div>
 

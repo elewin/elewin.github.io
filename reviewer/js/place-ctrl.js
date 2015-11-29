@@ -2,9 +2,11 @@ angular.module('reviewer').controller('placeCtrl', function(placeRef, dishesRef,
 	var place = $firebaseObject(placeRef);
 	var myDate = new Date();
 	var dateStr = myDate.getMonth()+1 + '/' +myDate.getDate() + '/' + myDate.getFullYear() ;
+	var numTopDishes = 3; //get the top 3 dishes
+	var dishesObj= $firebaseObject(dishesRef); //make our object of dishes
 
 	//need to put this on service, but its broken there for now :(
-	loadTopDishes = function(obj, num){ //make sure data is loaded before trying to put it on $scope, num is number of top dishes to get
+	var loadTopDishes = function(obj, num){ //make sure data is loaded before trying to put it on $scope, num is number of top dishes to get
 		obj.$loaded(function(data){
 			$scope.topDishArr = placeService.getTopDishesArr(dishesRef, num);
 
@@ -19,14 +21,6 @@ angular.module('reviewer').controller('placeCtrl', function(placeRef, dishesRef,
 					ratingColor: $scope.topDishArr[0].data.ratingColor,
 					avgScore: $scope.topDishArr[0].data.avgScore,
 				});
-			}else{ //set the best dish to empty if we dont have any dishes
-				bestDishRef.set({
-					name: 'Add a review!',
-					avgScorePct: 0,
-					ratingColor: '#ffffff',
-					avgScore: 0,
-				});
-			//	$scope.topDishArr[1].data.name = 'Empty';
 			}
 		},
 		function(error){
@@ -34,8 +28,7 @@ angular.module('reviewer').controller('placeCtrl', function(placeRef, dishesRef,
 		});
 	}
 
-	var numTopDishes = 3; //get the top 3 dishes
-	var dishesObj= $firebaseObject(dishesRef); //make our object of dishes
+
 	$scope.topDishArr = loadTopDishes(dishesObj, numTopDishes); //load the data so we dont start working with undefined values before the server can send it
 
 	dishesRef.on("child_changed", function(snapshot) { //automatically refresh top 3 dishes when there is a change

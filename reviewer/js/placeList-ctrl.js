@@ -4,6 +4,30 @@ angular.module('reviewer').controller('placeListCtrl', function(placeListRef, la
 	$scope.placeList = $firebaseArray(placeListRef);
 	$scope.latestReview = $firebaseObject(latestReviewRef);
 
+	$scope.options = [
+		{
+			name: 'Name',
+			value: 'name',
+		},
+		{
+			name: 'Most dishes',
+			value: '-totalDishes',
+		},
+		{
+			name: 'Most reviews',
+			value: '-totalReviews',
+		},
+		{
+			name: 'Highest rated dish',
+			value: '-bestDish.avgScorePct',
+		},
+		{
+			name: 'Most recent review',
+			value: '-latestReviewTimeStamp',
+		}
+
+	]; //for ng-repeat sortBy
+
 
 	$scope.placeList.$loaded().then(function(placeList) { //load the list
 	});
@@ -21,6 +45,17 @@ angular.module('reviewer').controller('placeListCtrl', function(placeListRef, la
 			genre: '',
 			dateAdded: dateStr,
 			addedBy: '', //user who added place
+			latestReviewId: '',
+			latestReviewTimeStamp: 0,
+		}).then(function(ref) {
+			ref.update({ //initialize child keys
+				bestDish: {
+					avgScore: 0,
+					avgScorePct: 0,
+					name: "Add a review!",
+					ratingColor: "#ffffff",
+				},
+			});
 		});
 		$scope.newPlaceName = "";
 	};
