@@ -1,4 +1,18 @@
-var app = angular.module('reviewer', ['firebase', 'ui.router']);
+var app = angular.module('reviewer', ['firebase', 'ui.router', 'angularUtils.directives.dirPagination']);
+
+app.filter('orderObjectBy', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a[field] > b[field] ? 1 : -1);
+    });
+    if(reverse) filtered.reverse();
+    return filtered;
+  };
+});
 
 app.constant('firebaseUrl', {
 	url: 'https://dishrater.firebaseio.com/'

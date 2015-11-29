@@ -51,7 +51,8 @@
 		<div class="dataContentBox">
 			<div class="dishList">
 				<ul>
-					<li ng-repeat="dish in dishes | orderBy: '-avgScore' ">
+					<li dir-paginate="dish in dishes | orderBy: '-avgScore' | itemsPerPage: 30" pagination-id="dishList">
+					<!-- <li ng-repeat="dish in dishes | orderBy: '-avgScore' "> -->
 						<a ui-sref=".dish({placeId:place.$id, dishId:dish.$id})">
 							<div id="dishListName">
 								{{ dish.name }}
@@ -73,13 +74,31 @@
 
 					</li>
 				</ul>
+
+
 				<div class="newDishBox">
 						<form name="newDishForm">
 							<input type="text" ng-model="newDishName" placeholder="Name of dish. . ." required/>
 							<button ng-disabled="newDishForm.$invalid" ng-click="createDish(newDishName)">Add dish</button>
 						</form>
 				</div>
+
+				<div id="pageControlsDishListBox">
+					<dir-pagination-controls
+						pagination-id="dishList"
+						max-size="3"
+						direction-links="true"
+						boundary-links="false"
+						template-url="./templates/dirPagination.tpl.html">
+					</dir-pagination-controls>
+				</div>
+
+
 			</div>
+
+
+
+
 		</div>
 
 		<div ui-view class="reviewBox"></div>

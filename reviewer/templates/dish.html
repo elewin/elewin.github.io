@@ -18,30 +18,30 @@
 	</div>
 	<div id="reviewList">
 		<ul>
-			<li ng-repeat="review in reviews">
+			<li dir-paginate="review in reviews | orderObjectBy:id:true | filter: q | itemsPerPage: 5">
+			<!-- <li ng-repeat="review in reviews"> -->
 				<div id="review">
 					<div id="reviewHeader">
-                        <div id="reviewHeaderTop">
-                            <div id="reviewSummary">
-                                {{review.summary}}
-                            </div>
-                            
-                            <div id="reviewScore">
-                                {{ review.score }}/5
-                            </div>
-                            <div id="reviewStarsBox">
-                                <div id="reviewStars" style="width:{{review.scorePct}}%; background-color: {{review.ratingColor}};">
-                                        <img id="reviewStarsImg" src="img/empty5star-noborder256.png" />
-                                </div>
-                            </div>
-                            <div id="reviewDate">
-                                {{review.date}}
-                            </div>
-                        </div>
-                        <div id="reviewUserName">
-                                {{review.user.name}}
-                        </div>
-                        
+            <div id="reviewHeaderTop">
+                <div id="reviewSummary">
+                    {{review.summary}}
+                </div>
+
+                <div id="reviewScore">
+                    {{ review.score }}/5
+                </div>
+                <div id="reviewStarsBox">
+                    <div id="reviewStars" style="width:{{review.scorePct}}%; background-color: {{review.ratingColor}};">
+                            <img id="reviewStarsImg" src="img/empty5star-noborder256.png" />
+                    </div>
+                </div>
+                <div id="reviewDate">
+                    {{review.date}}
+                </div>
+            </div>
+            <div id="reviewUserName">
+                    {{review.user.name}}
+            </div>
 					</div>
 					<div id="reviewComments">
 						{{review.comments}}
@@ -51,9 +51,20 @@
 		</ul>
 	</div>
 
+	<div id="pageControlsBox">
+		<dir-pagination-controls
+			
+	    max-size="5"
+	    direction-links="true"
+	    boundary-links="true"
+			template-url="./templates/dirPagination.tpl.html">
+		</dir-pagination-controls>
+	</div>
+
+
+
 	<div id="newReviewBox">
 		<form name="newReviewForm">
-			<!-- <input type="text" ng-model="newReviewScore" placeholder="Your rating" required/> -->
 							<span class="rating">
 				        <input type="radio" ng-model="newReviewScore" ng-value="5" class="rating-input" id="rating-input-1-5" name="rating-input-1"/>
 				        <label for="rating-input-1-5" class="rating-star"></label>

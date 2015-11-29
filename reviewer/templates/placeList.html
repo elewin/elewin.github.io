@@ -31,7 +31,8 @@
 				<div class="placeBox">
 
 					<ul>
-						<li ng-repeat="place in placeList | orderBy: '+name'">
+						<!-- <li ng-repeat="place in placeList | orderBy: '+name'"> -->
+						<li dir-paginate="place in placeList | orderBy: '+name' | itemsPerPage: 7" >
 
 						<div>
 
@@ -70,6 +71,17 @@
 										</div>
 									</li>
 								</ul>
+
+								<div id="pageControlsBox">
+									<dir-pagination-controls
+
+										max-size="5"
+										direction-links="true"
+										boundary-links="true"
+										template-url="./templates/dirPagination.tpl.html">
+									</dir-pagination-controls>
+								</div>
+
 
 									<div id="newPlaceBox">
 										<form name="newPlaceForm">
