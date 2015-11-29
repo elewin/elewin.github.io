@@ -39,12 +39,22 @@
 						</div>
 				</div>
 			</div>
-			<div class="topDishes">
-				<div id="topDish">
-					Best dish: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[0].key})" > {{topDishArr[0].data.name}} </a>
+			<div class="topDishes" >
+				<div id="topDish" >
+					<span ng-hide="topDishArr[0].data.name == ''">
+						Best dish: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[0].key})" > {{topDishArr[0].data.name}} </a>
+					</span>
+					<span ng-show="topDishArr[0].data.name == ''">
+						Add a dish!
+					</span>
 				</div>
-				<div id="alsoTryDishes">
-					Also popular: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[1].key})">{{topDishArr[1].data.name}}</a>, <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[2].key})">{{topDishArr[2].data.name}}</a>
+				<div id="alsoTryDishes" ng-hide="topDishArr[1].data.name == ''">
+					<span>
+						Also popular: <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[1].key})">{{topDishArr[1].data.name}}</a>
+					</span>
+					<span ng-hide="topDishArr[2].data.name == ''">
+						, <a ui-sref=".dish({placeId:place.$id, dishId:topDishArr[2].key})">{{topDishArr[2].data.name}}</a>
+					</span>
 				</div>
 			</div>
 		</div>

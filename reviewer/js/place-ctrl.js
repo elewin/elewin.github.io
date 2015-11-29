@@ -13,6 +13,13 @@ angular.module('reviewer').controller('placeCtrl', function(placeRef, dishesRef,
 			//while the top dishes are loaded, set the properties for the best dish for this place so it can be displayed along side the place on the palceList:
 			var bestDishRef = placeRef.child("bestDish");
 
+			//initialize topDishArr to set empty dishes to a blank value:
+			for (var i = $scope.topDishArr.length; i < numTopDishes; i++){ //go through the array for all values that are between the existing length and the number of top dishes to display
+				$scope.topDishArr.push({
+					data: {name: ''}, //add an object with a blank name value so that we can use ng-hide on the template
+				});
+			}
+
 			// make sure we have at least 1 dish
 			if (place.totalDishes > 0){
 				bestDishRef.set({
@@ -22,6 +29,8 @@ angular.module('reviewer').controller('placeCtrl', function(placeRef, dishesRef,
 					avgScore: $scope.topDishArr[0].data.avgScore,
 				});
 			}
+
+
 		},
 		function(error){
 			console.error("error:", error); //uh oh :(
